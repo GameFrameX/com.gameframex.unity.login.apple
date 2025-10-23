@@ -1,0 +1,19 @@
+{
+  "name": "GameFrameX.Login.Apple.Editor",
+  "references": [
+    "GameFrameX.Editor",
+    "GameFrameX.Runtime",
+    "GameFrameX.Login.Apple.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

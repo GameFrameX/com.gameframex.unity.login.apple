@@ -1,0 +1,17 @@
+{
+    "name": "GameFrameX.Login.Apple.Runtime",
+    "rootNamespace": "GameFrameX.Login.Apple.Runtime",
+    "references": [
+        "GameFrameX.Runtime",
+        "AppleAuth"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
