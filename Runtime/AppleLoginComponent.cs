@@ -16,16 +16,10 @@ namespace GameFrameX.Login.Apple.Runtime
     [DisallowMultipleComponent]
     [AddComponentMenu("Game Framework/AppleLogin")]
     [UnityEngine.Scripting.Preserve]
+    [RequireComponent(typeof(GameFrameXAppleLoginCroppingHelper))]
     public class AppleLoginComponent : GameFrameworkComponent
     {
-        private const int DefaultPriority = 0;
-
         private IAppleLoginManager _AppleLoginManager = null;
-
-        /// <summary>
-        ///  Apple 登录 Web ClientId
-        /// </summary>
-        [SerializeField] private string m_ProjectId = string.Empty;
 
         /// <summary>
         /// 游戏框架组件初始化。
@@ -39,7 +33,7 @@ namespace GameFrameX.Login.Apple.Runtime
             _AppleLoginManager = GameFrameworkEntry.GetModule<IAppleLoginManager>();
             if (_AppleLoginManager == null)
             {
-                Log.Fatal("Red system manager is invalid.");
+                Log.Fatal("Apple login manager is invalid.");
                 return;
             }
         }
@@ -61,18 +55,5 @@ namespace GameFrameX.Login.Apple.Runtime
         {
             _AppleLoginManager.LogOut();
         }
-
-        // internal void ProcessAuthentication(SignInStatus status)
-        // {
-        //     if (status == SignInStatus.Success)
-        //     {
-        //         // Continue with Play Games Services
-        //     }
-        //     else
-        //     {
-        //         // 停用与 Play 游戏服务的集成或显示登录按钮 以请求用户登录。单击它应该会调用
-        //         PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
-        //     }
-        // }
     }
 }
