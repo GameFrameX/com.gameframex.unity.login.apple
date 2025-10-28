@@ -63,50 +63,55 @@ namespace GameFrameX.Login.Apple.Runtime
             var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);
 
             this.m_appleAuthManager.LoginWithAppleId(loginArgs, credential =>
-                {
-                    // Obtained credential, cast it to IAppleIDCredential
-                    if (credential is IAppleIDCredential appleIdCredential)
-                    {
-                        // Apple User ID
-                        // You should save the user ID somewhere in the device
-                        var userId = appleIdCredential.User;
-                        PlayerPrefs.SetString(AppleUserIdKey, userId);
-                        appleLoginSuccess.PlayerId = userId;
-                        // Email (Received ONLY in the first login)
-                        var email = appleIdCredential.Email;
-                        appleLoginSuccess.Email = email;
-                        PlayerPrefs.SetString(AppleUserEmailKey, email);
-                        // Full name (Received ONLY in the first login)
-                        var fullName = appleIdCredential.FullName;
-                        appleLoginSuccess.DisplayName = fullName?.Nickname;
-                        PlayerPrefs.SetString(AppleUserDisplayNameKey, appleLoginSuccess.DisplayName);
-                        // Identity token
-                        var identityToken = Encoding.UTF8.GetString(
-                            appleIdCredential.IdentityToken,
-                            0,
-                            appleIdCredential.IdentityToken.Length);
-                        appleLoginSuccess.IdToken = identityToken;
-                        // Authorization code
-                        var authorizationCode = Encoding.UTF8.GetString(
-                            appleIdCredential.AuthorizationCode,
-                            0,
-                            appleIdCredential.AuthorizationCode.Length);
-                        appleLoginSuccess.AuthorizationCode = authorizationCode;
-                        // And now you have all the information to create/login a user in your system
-                        loginSuccess?.Invoke(appleLoginSuccess);
-                    }
-                },
-                error =>
-                {
-                    // Something went wrong
-                    var authorizationErrorCode = error.GetAuthorizationErrorCode();
-                    loginFail?.Invoke((int)authorizationErrorCode);
-                });
+                                                     {
+                                                         // Obtained credential, cast it to IAppleIDCredential
+                                                         if (credential is IAppleIDCredential appleIdCredential)
+                                                         {
+                                                             // Apple User ID
+                                                             // You should save the user ID somewhere in the device
+                                                             var userId = appleIdCredential.User;
+                                                             PlayerPrefs.SetString(AppleUserIdKey, userId);
+                                                             appleLoginSuccess.PlayerId = userId;
+                                                             // Email (Received ONLY in the first login)
+                                                             var email = appleIdCredential.Email;
+                                                             appleLoginSuccess.Email = email;
+                                                             PlayerPrefs.SetString(AppleUserEmailKey, email);
+                                                             // Full name (Received ONLY in the first login)
+                                                             var fullName = appleIdCredential.FullName;
+                                                             appleLoginSuccess.DisplayName = fullName?.Nickname;
+                                                             PlayerPrefs.SetString(AppleUserDisplayNameKey, appleLoginSuccess.DisplayName);
+                                                             // Identity token
+                                                             var identityToken = Encoding.UTF8.GetString(
+                                                                 appleIdCredential.IdentityToken,
+                                                                 0,
+                                                                 appleIdCredential.IdentityToken.Length);
+                                                             appleLoginSuccess.IdToken = identityToken;
+                                                             // Authorization code
+                                                             var authorizationCode = Encoding.UTF8.GetString(
+                                                                 appleIdCredential.AuthorizationCode,
+                                                                 0,
+                                                                 appleIdCredential.AuthorizationCode.Length);
+                                                             appleLoginSuccess.AuthorizationCode = authorizationCode;
+                                                             PlayerPrefs.Save();
+                                                             // And now you have all the information to create/login a user in your system
+                                                             loginSuccess?.Invoke(appleLoginSuccess);
+                                                         }
+                                                     },
+                                                     error =>
+                                                     {
+                                                         // Something went wrong
+                                                         var authorizationErrorCode = error.GetAuthorizationErrorCode();
+                                                         loginFail?.Invoke((int)authorizationErrorCode);
+                                                     });
         }
 
         [UnityEngine.Scripting.Preserve]
         public void LogOut()
         {
+            PlayerPrefs.DeleteKey(AppleUserIdKey);
+            PlayerPrefs.DeleteKey(AppleUserEmailKey);
+            PlayerPrefs.DeleteKey(AppleUserDisplayNameKey);
+            PlayerPrefs.Save();
         }
 
         protected override void Update(float elapseSeconds, float realElapseSeconds)
