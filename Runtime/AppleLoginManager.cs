@@ -78,7 +78,13 @@ namespace GameFrameX.Login.Apple.Runtime
         public void Login(Action<AppleLoginSuccess> loginSuccess, Action<int> loginFail)
         {
             var appleLoginSuccess = new AppleLoginSuccess();
-
+#if UNITY_EDITOR
+            appleLoginSuccess.PlayerId = SystemInfo.deviceUniqueIdentifier;
+            appleLoginSuccess.Email = "test_login@apple.com";
+            appleLoginSuccess.DisplayName = "Editor_Apple_Test";
+            loginSuccess?.Invoke(appleLoginSuccess);
+            return;
+#endif
             var appleUserId = PlayerPrefs.GetString(AppleUserIdKey, string.Empty);
             var appleUserEmail = PlayerPrefs.GetString(AppleUserEmailKey, string.Empty);
             var appleUserDisplayName = PlayerPrefs.GetString(AppleUserDisplayNameKey, string.Empty);
