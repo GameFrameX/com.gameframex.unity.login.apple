@@ -39,7 +39,7 @@ namespace GameFrameX.Login.Apple.Runtime
     /// Apple登录组件。
     /// </summary>
     [DisallowMultipleComponent]
-    [AddComponentMenu("Game Framework/AppleLogin")]
+    [AddComponentMenu("GameFrameX/AppleLogin")]
     [UnityEngine.Scripting.Preserve]
     [RequireComponent(typeof(GameFrameXAppleLoginCroppingHelper))]
     public class AppleLoginComponent : GameFrameworkComponent
