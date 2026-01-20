@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/gameframex/com.gameframex.unity.login.apple/compare/1.1.0...1.1.1) (2026-01-20)
+
+
+### Bug Fixes
+
+* **Apple登录:** 将登录失败回调的错误码类型从int改为string ([b4d689e](https://github.com/gameframex/com.gameframex.unity.login.apple/commit/b4d689e260751353c0878cc830ed7e15db6b278d))
+
 # [1.1.0](https://github.com/gameframex/com.gameframex.unity.login.apple/compare/1.0.1...1.1.0) (2025-12-23)
 
 
