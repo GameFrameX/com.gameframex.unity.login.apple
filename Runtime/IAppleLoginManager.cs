@@ -51,7 +51,7 @@ namespace GameFrameX.Login.Apple.Runtime
         /// <param name="loginSuccess">登录成功回调,返回登录信息</param>
         /// <param name="loginFail">登录失败回调,返回错误码</param>
         [UnityEngine.Scripting.Preserve]
-        void Login(Action<AppleLoginSuccess> loginSuccess, Action<int> loginFail);
+        void Login(Action<AppleLoginSuccess> loginSuccess, Action<string> loginFail);
 
         /// <summary>
         /// 退出Apple账号登录

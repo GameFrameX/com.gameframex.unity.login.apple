@@ -75,7 +75,7 @@ namespace GameFrameX.Login.Apple.Runtime
         /// <param name="loginSuccess">登录成功回调。</param>
         /// <param name="loginFail">登录失败回调。</param>
         [UnityEngine.Scripting.Preserve]
-        public void Login(Action<AppleLoginSuccess> loginSuccess, Action<int> loginFail)
+        public void Login(Action<AppleLoginSuccess> loginSuccess, Action<string> loginFail)
         {
             var appleLoginSuccess = new AppleLoginSuccess();
 #if UNITY_EDITOR
@@ -139,7 +139,7 @@ namespace GameFrameX.Login.Apple.Runtime
                                                      {
                                                          // Something went wrong
                                                          var authorizationErrorCode = error.GetAuthorizationErrorCode();
-                                                         loginFail?.Invoke((int)authorizationErrorCode);
+                                                         loginFail?.Invoke(authorizationErrorCode.ToString());
                                                      });
         }
 

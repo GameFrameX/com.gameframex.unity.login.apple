@@ -70,7 +70,7 @@ namespace GameFrameX.Login.Apple.Runtime
         }
 
         [UnityEngine.Scripting.Preserve]
-        public void Login(Action<AppleLoginSuccess> loginSuccess, Action<int> loginFail)
+        public void Login(Action<AppleLoginSuccess> loginSuccess, Action<string> loginFail)
         {
             _AppleLoginManager.Login(loginSuccess, loginFail);
         }
