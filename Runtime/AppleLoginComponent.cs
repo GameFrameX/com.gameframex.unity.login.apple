@@ -63,18 +63,29 @@ namespace GameFrameX.Login.Apple.Runtime
             }
         }
 
+        /// <summary>
+        /// 初始化 Apple 登录模块。
+        /// </summary>
         [UnityEngine.Scripting.Preserve]
         public void Init()
         {
             _AppleLoginManager.Init();
         }
 
+        /// <summary>
+        /// 发起 Apple 登录流程。
+        /// </summary>
+        /// <param name="loginSuccess">登录成功回调，携带 Apple 登录成功信息。</param>
+        /// <param name="loginFail">登录失败回调，携带错误描述信息。</param>
         [UnityEngine.Scripting.Preserve]
         public void Login(Action<AppleLoginSuccess> loginSuccess, Action<string> loginFail)
         {
             _AppleLoginManager.Login(loginSuccess, loginFail);
         }
 
+        /// <summary>
+        /// 执行 Apple 登出操作。
+        /// </summary>
         [UnityEngine.Scripting.Preserve]
         public void LogOut()
         {
